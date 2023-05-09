@@ -1,3 +1,3 @@
 # Django-ML
-Crawling web pages.
-Sentiment analysis.
+Crawling web pages and Sentiment analysis.
+
