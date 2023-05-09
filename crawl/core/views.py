@@ -35,7 +35,7 @@ def get_topics(request):
         topic_words = []
         for topic_idx, topic in enumerate(lda.components_):
             top_words = [feature_names[i] for i in topic.argsort()[:-11:-1]]
-            topic_words.append({'topic': f'Topic {topic_idx}', 'words': top_words})
+            topic_words.append({'topic': f'Topic {topic_idx+1}', 'words': top_words})
 
         # Render the results page with the top words for each topic
         context = {'topic_words': topic_words}
