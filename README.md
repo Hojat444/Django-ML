@@ -1,6 +1,6 @@
 # Project Name
 
-Django ML Web Crawler
+Django ML Web Crawler and Sentiment Analysis
 
 ## Description
 
