@@ -16,7 +16,7 @@
               <form action="{% url 'results' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                  <label for="input-url">آدرس وب سایت:</label>
+                  <label for="input-url">آدرس وب سایت</label>
                   <input type="text" name="url" id="input-url" class="form-control" required>
                 </div>
                 <div class="text-center">
@@ -24,8 +24,8 @@
                 </div>
               </form>
             </div>
+            <a href="{% url 'analyze_sentiment' %}" class="btn btn-info p-3 m-3">برای تحلیل احساس متن کلیک کنید</a>
           </div>
-          <a href="{% url 'analyze_sentiment' %}" class="btn btn-info p-3 m-3">برای تحلیل احساس متن کلیک کنید</a>
         </div>
       </div>
     </div>

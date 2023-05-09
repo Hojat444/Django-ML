@@ -17,7 +17,7 @@
           <form action="{% url 'analyze_sentiment' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <label for="text">متنی را وارد کنید:</label>
+              <label for="text">متنی را وارد کنید</label>
               <textarea class="form-control" rows="5" id="text" name="text" required></textarea>
               <small class="form-text text-muted">متن باید حداقل ۱۰ کاراکتر داشته باشد.</small>
             </div>

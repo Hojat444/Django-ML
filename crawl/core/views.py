@@ -53,11 +53,11 @@ def analyze_sentiment(request):
         blob = TextBlob(text)
         sentiment_score = blob.sentiment.polarity
         if sentiment_score < -0.2:
-            sentiment_label = 'Negative'
+            sentiment_label = 'منفی'
         elif sentiment_score > 0.2:
-            sentiment_label = 'Positive'
+            sentiment_label = 'مثبت'
         else:
-            sentiment_label = 'Neutral'
+            sentiment_label = 'خنثی'
         return render(request, 'sentiment.html', {'sentiment_score': sentiment_score, 'sentiment_label': sentiment_label})
     else:
         return render(request, 'sentiment.html')  
