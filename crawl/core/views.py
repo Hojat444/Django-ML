@@ -58,7 +58,7 @@ def analyze_sentiment(request):
             sentiment_label = 'مثبت'
         else:
             sentiment_label = 'خنثی'
-        return render(request, 'sentiment.html', {'sentiment_score': sentiment_score, 'sentiment_label': sentiment_label})
+        return render(request, 'sentiment.html', {'sentiment_score': sentiment_score, 'sentiment_label': sentiment_label, 'text':text})
     else:
         return render(request, 'sentiment.html')  
 
