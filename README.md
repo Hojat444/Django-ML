@@ -1,6 +1,6 @@
 # Project Name
 
-Django ML Web Crawler and Sentiment Analysis
+Django ML
 
 ## Description
 
@@ -32,6 +32,7 @@ This project is a web application built with Django that utilizes machine learni
 
 - Web crawling using machine learning algorithms
 - Natural language processing for text analysis
+- Chatbot
 - Sentiment analysis for classifying web pages
 - User-friendly web interface
 
