@@ -13,11 +13,11 @@
     <div class="col-md-8">
       <div class="card shadow-lg border-0">
         <div class="card-body">
-          <h3 class="card-title text-center mb-4">تحلیل احساسات</h3>
+          <h3 class="card-title text-center mb-4">تحلیل احساس کامنت ها</h3>
           <form action="{% url 'analyze_sentiment' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <label for="text">متنی را وارد کنید</label>
+              <label for="text">آدرسی را وارد کنید</label>
               <textarea class="form-control" rows="5" id="text" name="text" required>{{text}}</textarea>
               <small class="form-text text-muted">متن باید حداقل ۱۰ کاراکتر داشته باشد.</small>
             </div>
@@ -27,17 +27,32 @@
           <div class="mt-4">
             <h4 class="card-title text-center mb-4">نتایج تحلیل احساسات</h4>
             <div class="card shadow-lg border-0 mb-3">
+              
+              {% for score in sentiment_score  %}
               <div class="card-body">
-                <p class="card-text lead text-center mb-0">امتیاز احساسی متن شما: {{ sentiment_score }}</p>
+                <p class="card-text lead text-center mb-0">امتیاز احساسی کامنت : {{ score }}</p>
               </div>
+              {% endfor %}
+                
             </div>
+            
+            {% for label in sentiment_label %}
             <div class="card shadow-lg border-0">
               <div class="card-body">
-                <p class="card-text lead text-center mb-0">برچسب احساسی متن شما: <span class="badge {% if sentiment_score > 0.0 %}badge-success{% elif sentiment_score == 0.0 %}badge-warning{% else %}badge-danger{% endif %}">{{ sentiment_label }}</span></p>
+                <p class="card-text lead text-center mb-0">برچسب احساسی کامنت : <span class="badge badge-info">{{ label }}</span></p>
               </div>
             </div>
+            {% endfor %}
+              
+            
           </div>
           {% endif %}
+          <h2>کامنت ها : </h2>
+          {% for commnet in comments %}
+          <p> - {{commnet}}</p>
+        </br>
+          {% endfor %}
+            
         </div>
         <a href="{% url 'index' %}" class="btn btn-info p-3 m-4">برای کرالینگ کلیک کنید</a>
       </div>

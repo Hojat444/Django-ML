@@ -49,16 +49,38 @@ def get_topics(request):
 
 def analyze_sentiment(request):
     if request.method == 'POST':
-        text = request.POST['text']
-        blob = TextBlob(text)
-        sentiment_score = blob.sentiment.polarity
-        if sentiment_score < -0.2:
-            sentiment_label = 'منفی'
-        elif sentiment_score > 0.2:
-            sentiment_label = 'مثبت'
-        else:
-            sentiment_label = 'خنثی'
-        return render(request, 'sentiment.html', {'sentiment_score': sentiment_score, 'sentiment_label': sentiment_label, 'text':text})
+        product_url = request.POST['text']
+        response = requests.get(product_url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        comments = []
+        sentiment_score = []
+        comment_elements = soup.find_all('div', class_='fdbk-container__details__comment')
+        for comment_element in comment_elements:
+            comment_text = comment_element.text.strip()
+            comments.append(comment_text)
+            sentiment_score.append(analyze_comments_sentiment(comments))
+        
+        
+        sentiment_label = []
+        
+        
+        for i in sentiment_score:
+            
+            if i < -0.2:
+                sentiment_label.append('منفی')
+            elif i> 0.2:
+                sentiment_label.append('مثبت')
+            else:
+                sentiment_label.append('خنثی')
+        
+        
+        return render(request, 'sentiment.html', {'sentiment_score': sentiment_score, 'sentiment_label': sentiment_label, 'comments': comments})
     else:
-        return render(request, 'sentiment.html')  
+        return render(request, 'sentiment.html')
+
+def analyze_comments_sentiment(comments):
+    blob = TextBlob('\n'.join(comments))
+    return blob.sentiment.polarity
+
 
